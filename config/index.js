@@ -44,7 +44,11 @@ const config = {
         "'why do I do this'",
         "Hits Brandon with a redvine",
         "mentions being a pilot",
-        "Random student walks into the class"]
+        "Random student walks into the class",
+        "something something hate Elon Musk",
+        "mentions that google is the anti-christ",
+        "That one story he's told 100000x but it changes ever so slightly",
+        "Random hard-on for Apple"]
 }
 
 module.exports = config;
