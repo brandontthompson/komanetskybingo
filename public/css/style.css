@@ -1,0 +1,57 @@
+#squarefree {
+
+    font-family: Helvetica;
+    margin: 0 auto;
+    background: #5dc4de;
+    text-align: center;
+    font-weight: 600;
+    font-size: 15pt;
+}
+
+#bingotable {
+    margin: 0 auto;
+    text-align: center;
+    width: 800px;
+    height: 800px;
+    border-collapse: collapse;
+    background: #ffffff;
+}
+
+th,
+td {
+    font-family: Helvetica;
+    margin: 0 auto;
+    text-align: center;
+    border: 3px solid #000000;
+    width: 20%;
+}
+
+.orange {
+    color: #ffffff;
+    background: #5982b6;
+}
+
+.selected {
+    color: #ffffff;
+    background: #c93b3b;
+}
+
+.sidebar {
+    text-align: center;
+    width: 200px;
+    color: #000000;
+    position: fixed;
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* Scrollable contents if viewport is shorter than content. */
+    background-color: #5981b642;
+    border-right: 1px solid #4e709c;
+}
+
+.pattern{
+    max-width: 100px;
+    height: auto;
+}

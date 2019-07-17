@@ -1,0 +1,27 @@
+{
+  "name": "komanetskybingo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon dist/index.js",
+    "start": "node dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XhailOrigin/komanetskybingo.git"
+  },
+  "author": "Brandon Thompson",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/XhailOrigin/komanetskybingo/issues"
+  },
+  "homepage": "https://github.com/XhailOrigin/komanetskybingo#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}

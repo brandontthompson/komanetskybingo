@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Bingo</title>
+</head>
+
+<body>
+    <div class="container text-center mt-3">
+        <p class="h1 ">BILL KOMANETSKY'S</p>
+        <div class="content">
+            <div class="form">
+                <p class="h2">Bingo</p>
+                <div class="form-group">
+                    <label for="handle">What's your name?</label>
+                    <input type="text" class="form-control" name="handle" id="handle" placeholder="handle">
+                    <button id="send" class="btn btn-primary w-100" type="button">Let's Play!</button>
+                </div>
+            </div>
+            <div class="spinner-border" hidden></div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row bingo" hidden>
+            <div class="sidebar">
+                <div class="head">
+                    <p class="h3">Playing as</p>
+                    <i>
+                        <p class="h4 handle"></p>
+                    </i>
+                </div>
+                <div class="content">
+                    <p class="h5">Playing with: <i class="count"></i> other users</p>
+                    <img src="" alt="" class="pattern">
+                </div>
+            </div>
+            <div id="content" class="bingo col-sm-12 col-md-offset-10" hidden>
+                <table id="bingotable">
+                    <tr>
+                        <th class="orange">B</th>
+                        <th class="orange">I</th>
+                        <th class="orange">N</th>
+                        <th class="orange">G</th>
+                        <th class="orange">O</th>
+                    </tr>
+                    <tr>
+                        <td id="square0"> &nbsp;</td>
+                        <td id="square1"> &nbsp;</td>
+                        <td id="square2"> &nbsp;</td>
+                        <td id="square3"> &nbsp;</td>
+                        <td id="square4"> &nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td id="square5"> &nbsp;</td>
+                        <td id="square6"> &nbsp;</td>
+                        <td id="square7"> &nbsp;</td>
+                        <td id="square8"> &nbsp;</td>
+                        <td id="square9"> &nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td id="square10"> &nbsp;</td>
+                        <td id="square11"> &nbsp;</td>
+                        <td id="squarefree"> FREE</td>
+                        <td id="square12"> &nbsp;</td>
+                        <td id="square13"> &nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td id="square14"> &nbsp;</td>
+                        <td id="square15"> &nbsp;</td>
+                        <td id="square16"> &nbsp;</td>
+                        <td id="square17"> &nbsp;</td>
+                        <td id="square18"> &nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td id="square19"> &nbsp;</td>
+                        <td id="square20"> &nbsp;</td>
+                        <td id="square21"> &nbsp;</td>
+                        <td id="square22"> &nbsp;</td>
+                        <td id="square23"> &nbsp;</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function create() {
+        $.get("http://localhost:4000/generate", function (data) {
+            data.data.forEach(element => {
+                $('#' + element.tile).html(element.label);
+            });
+        }).then((result) => {
+            $('.spinner-border').remove();
+            $('.bingo').removeAttr('hidden');
+        });
+    }
+    $('td').click(function (items) {
+        $(this).toggleClass("selected")
+    });
+</script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-144048408-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'UA-144048408-1');
+</script>
+<script src="js/socket.js"></script>
+
+</html>
