@@ -19,7 +19,7 @@ app.get('/generate', (req, res) => {
 app.use(express.static('public'));
 
 const server = app.listen(config.port, () => {
-    console.log(`REST API on http://localhost:${config.port}`)
+    console.log(`REST API on http://komanetsky.com:${config.port}`)
 });
 
 const io = socket(server);

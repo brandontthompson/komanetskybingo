@@ -25,7 +25,7 @@
                 <div class="container w-50 mt-5">
                     <div class="form-group">
                         <label for="handle">What's your name?</label>
-                        <input type="text" class="form-control" name="handle" id="handle" placeholder="handle">
+                        <input type="text" class="form-control" name="handle" id="handle" placeholder="Name">
                         <button id="send" class="btn btn-primary w-100" type="button">Let's Play!</button>
                     </div>
                 </div>
@@ -98,7 +98,7 @@
 </body>
 <script>
     function create() {
-        $.get("http://localhost:4000/generate", function (data) {
+        $.get("http://komanetsky.com:4000/generate", function (data) {
             data.data.forEach(element => {
                 $('#' + element.tile).html(element.label);
             });
