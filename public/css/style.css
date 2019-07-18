@@ -39,7 +39,7 @@ td {
 .sidebar {
     text-align: center;
     width: 200px;
-    color: #000000;
+    /* color: #000000; */
     position: fixed;
     z-index: 1000;
     display: block;
@@ -47,7 +47,7 @@ td {
     overflow-x: hidden;
     overflow-y: auto;
     /* Scrollable contents if viewport is shorter than content. */
-    background-color: #5981b642;
+    /* background-color: #5981b642; */
     border-right: 1px solid #4e709c;
 }
 

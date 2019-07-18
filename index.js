@@ -33,6 +33,9 @@ io.on('connection', function (socket) {
     console.log('connected: %s\n%s sockets connected', socket.id, connections.length);
     socket.on('bindhandle', function (data) {
         console.log(data);
+        if(data.handle == ''){
+            data.handle = "anonymous";
+        }
         // sends to all
         io.sockets.emit('join', connections.length);
         socket.emit('bindhandle', data);
