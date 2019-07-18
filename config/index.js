@@ -48,7 +48,11 @@ const config = {
         "something something hate Elon Musk",
         "mentions that google is the anti-christ",
         "That one story he's told 100000x but it changes ever so slightly",
-        "Random hard-on for Apple"]
+        "Random hard-on for Apple",
+        "anything about IBM",
+        "Strokes his ponytail",
+        "mentions the dean"
+    ]
 }
 
 module.exports = config;
