@@ -16,7 +16,7 @@ const config = {
     ],
     strings: [
         "Throws something",
-        "Kills a student\n(FREE SQUARE)",
+        "Kills a student (FREE SQUARE)",
         "Yells at Matthew",
         "Yi Onni gets up",
         "Yi Onni gets a cookie",
