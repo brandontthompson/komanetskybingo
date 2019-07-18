@@ -1,6 +1,6 @@
 const config = {
     port: process.env.PORT || 4000,
-    patterns:[
+    patterns: [
         "images/patterns/arrow.png",
         "images/patterns/blackout.png",
         "images/patterns/cross.png",
@@ -16,7 +16,7 @@ const config = {
     ],
     strings: [
         "Throws something",
-        "Kills a student",
+        "Kills a student\n(FREE SQUARE)",
         "Yells at Matthew",
         "Yi Onni gets up",
         "Yi Onni gets a cookie",

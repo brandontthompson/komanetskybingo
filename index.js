@@ -13,7 +13,7 @@ app.get('/generate', (req, res) => {
     let filled = new Array(config.strings.length);
     res.status(200).json({
         data: util.generate(filled)
-      });
+    });
 });
 
 app.use(express.static('public'));
@@ -24,14 +24,14 @@ const server = app.listen(config.port, () => {
 
 const io = socket(server);
 
-io.on('connection', function(socket){
-    if(connections.length == 0){
+io.on('connection', function (socket) {
+    if (connections.length == 0) {
         pattern = util.setpattern();
     }
     socket.emit('pattern', pattern);
     connections.push(socket);
     console.log('connected: %s\n%s sockets connected', socket.id, connections.length);
-    socket.on('bindhandle', function(data){
+    socket.on('bindhandle', function (data) {
         console.log(data);
         // sends to all
         io.sockets.emit('join', connections.length);
@@ -39,11 +39,12 @@ io.on('connection', function(socket){
     });
 
     // disconnect
-    socket.on('disconnect', function(data){
+    socket.on('disconnect', function (data) {
         connections.splice(connections.indexOf(socket), 1);
         console.log('disconnected: %s\n%s sockets connected', socket.id, connections.length);
+        io.sockets.emit('join', connections.length);
     })
-    
+
 });
 
 
