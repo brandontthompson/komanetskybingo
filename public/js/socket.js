@@ -1,4 +1,4 @@
-const socket = io.connect('http://komanetsky.com:4000');
+const socket = io.connect('http://localhost:4000');
 
 // query dom
 
@@ -6,7 +6,7 @@ const handle = $('#handle');
 
 // emit events
 
-$('#send').on('click', function(){
+$('#send').on('click', function () {
     socket.emit('bindhandle', {
         handle: handle.val()
     });
@@ -16,20 +16,20 @@ $('#send').on('click', function(){
 });
 
 // listen for events
-socket.on('bindhandle', function(data){
+socket.on('bindhandle', function (data) {
     $('.handle').html(data.handle);
 });
 
-socket.on('announce', function(data){
+socket.on('announce', function (data) {
     $('.announce').html(data.message);
 });
 
-socket.on('pattern', function(data){
+socket.on('pattern', function (data) {
     console.log(data);
-    
+
     $('.pattern').attr('src', data);
 });
 
-socket.on('join', function(data){
-    $('.count').html(data-1);
+socket.on('join', function (data) {
+    $('.count').html(data - 1);
 });

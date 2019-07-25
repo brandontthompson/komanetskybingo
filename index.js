@@ -19,7 +19,7 @@ app.get('/generate', (req, res) => {
 app.use(express.static('public'));
 
 const server = app.listen(config.port, () => {
-    console.log(`REST API on http://komanetsky.com:${config.port}`)
+    console.log(`REST API on http://localhost:${config.port}`)
 });
 
 const io = socket(server);
@@ -33,7 +33,7 @@ io.on('connection', function (socket) {
     console.log('connected: %s\n%s sockets connected', socket.id, connections.length);
     socket.on('bindhandle', function (data) {
         console.log(data);
-        if(data.handle == ''){
+        if (data.handle == '') {
             data.handle = "anonymous";
         }
         // sends to all

@@ -10,13 +10,17 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
+        </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css" />
     <link rel="stylesheet" href="css/style.css">
     <title>Bingo</title>
 </head>
 
 <body>
+    <a class="github-fork-ribbon" href="https://github.com/XhailOrigin/komanetskybingo" data-ribbon="Fork me on GitHub"
+        title="Fork me on GitHub">Fork me on GitHub</a>
     <div class="container text-center mt-3">
         <p class="h1 ">BILL KOMANETSKY'S</p>
         <div class="content">
@@ -98,7 +102,7 @@
 </body>
 <script>
     function create() {
-        $.get("http://komanetsky.com:4000/generate", function (data) {
+        $.get("http://localhost:4000/generate", function (data) {
             data.data.forEach(element => {
                 $('#' + element.tile).html(element.label);
             });
