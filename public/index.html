@@ -10,10 +10,11 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-        </script>
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css" />
+    <script src="js/confetti.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <title>Bingo</title>
 </head>
@@ -35,22 +36,20 @@
                 </div>
             </div>
             <div class="spinner-border" hidden></div>
+            <div class="announce" onclick="off()"></div>
         </div>
     </div>
-    <div class="container-fluid">
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <p class="h3">Playing as</p>
+        <p class="handle"></p>
+        <div class="content">
+            <p class="h5">Playing with: <i class="count"></i> other users</p>
+        </div>
+    </div>
+    <div class="container-fluid" id="main">
         <div class="row bingo" hidden>
-            <div class="sidebar orange">
-                <div class="head">
-                    <p class="h3">Playing as</p>
-                    <i>
-                        <p class="h4 handle"></p>
-                    </i>
-                </div>
-                <div class="content">
-                    <p class="h5">Playing with: <i class="count"></i> other users</p>
-                    <img src="" alt="" class="pattern">
-                </div>
-            </div>
+                <button class="openbtn" onclick="openNav()">&#187;</button>
             <div id="content" class="bingo col-sm-12 col-md-offset-10" hidden>
                 <table id="bingotable">
                     <tr>
@@ -112,8 +111,22 @@
         });
     }
     $('td').click(function (items) {
-        $(this).toggleClass("selected")
+        $(this).toggleClass("selected");
     });
+
+    function off() {
+        $('.announce').css('display', 'none');
+    }
+
+    function openNav(){
+        $('#mySidebar').width('250px');
+        $('#main').style.marginLeft = "250px";
+    }
+
+    function closeNav(){
+        $('#mySidebar').width('0');
+        $('#main').style.marginLeft = "0";
+    }
 </script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-144048408-1"></script>

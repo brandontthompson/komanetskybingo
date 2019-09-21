@@ -41,6 +41,13 @@ io.on('connection', function (socket) {
         socket.emit('bindhandle', data);
     });
 
+    socket.on('cardcheck', function(data){
+        // console.log(data.card);
+        if(util.checkcard(data.card)){
+            io.to(`${socket.id}`).emit('announce', {message : `🎉 CONGRATULATIONS 🎉`})
+        }
+    });
+
     // disconnect
     socket.on('disconnect', function (data) {
         connections.splice(connections.indexOf(socket), 1);
