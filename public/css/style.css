@@ -45,6 +45,11 @@ td {
     cursor: pointer; /* Add a pointer on hover */
 }
 
+.orange {
+    color: #ffffff;
+    background: #5982b6;
+}
+
 .announce p {
     text-align: center;
     font-size: 3em;
