@@ -49,7 +49,7 @@
     </div>
     <div class="container-fluid" id="main">
         <div class="row bingo" hidden>
-                <button class="openbtn" onclick="openNav()">&#187;</button>
+            <button class="openbtn" onclick="openNav()">&#187;</button>
             <div id="content" class="bingo col-sm-12 col-md-offset-10" hidden>
                 <table id="bingotable">
                     <tr>
@@ -101,7 +101,7 @@
 </body>
 <script>
     function create() {
-        $.get("http://localhost:4000/generate", function (data) {
+        $.get("http://komanetsky.com:4000/generate", function (data) {
             data.data.forEach(element => {
                 $('#' + element.tile).html(element.label);
             });
@@ -118,12 +118,12 @@
         $('.announce').css('display', 'none');
     }
 
-    function openNav(){
+    function openNav() {
         $('#mySidebar').width('250px');
         $('#main').style.marginLeft = "250px";
     }
 
-    function closeNav(){
+    function closeNav() {
         $('#mySidebar').width('0');
         $('#main').style.marginLeft = "0";
     }

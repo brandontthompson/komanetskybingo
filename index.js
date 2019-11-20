@@ -19,7 +19,7 @@ app.get('/generate', (req, res) => {
 app.use(express.static('public'));
 
 const server = app.listen(config.port, () => {
-    console.log(`REST API on http://localhost:${config.port}`)
+    console.log(`REST API on http://komanetsky.com:${config.port}`)
 });
 
 const io = socket(server);
@@ -41,10 +41,12 @@ io.on('connection', function (socket) {
         socket.emit('bindhandle', data);
     });
 
-    socket.on('cardcheck', function(data){
+    socket.on('cardcheck', function (data) {
         // console.log(data.card);
-        if(util.checkcard(data.card)){
-            io.to(`${socket.id}`).emit('announce', {message : `🎉 CONGRATULATIONS 🎉`})
+        if (util.checkcard(data.card)) {
+            io.to(`${socket.id}`).emit('announce', {
+                message: `🎉 CONGRATULATIONS 🎉`
+            })
         }
     });
 
