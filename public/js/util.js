@@ -1,7 +1,7 @@
 function create(id) {
     cardmngr.push([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
     let card = $('#content').append(table(id));
-    $.get("http://localhost:4000/generate", function (data) {
+    $.get("http://komanetsky.com:4000/generate", function (data) {
         data.data.forEach(element => {
             $(`#${id}`).find('#' + element.tile).html(element.label);
             // $('#' + element.tile).html(element.label);
