@@ -32,8 +32,14 @@
                 <p class="h2">Bingo</p>
                 <div class="container w-50 mt-5">
                     <div class="form-group">
-                        <label for="handle">What's your name?</label>
-                        <input type="text" class="form-control" name="handle" id="handle" placeholder="Name">
+                        <p>What should I call you?</p>
+                        <!-- <input type="text" class="form-control" name="handle" id="handle" placeholder="Name"> -->
+                        <div class="group">
+                            <input type="text" id="handle" required>
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>Name</label>
+                        </div>
                         <button id="send" class="btn btn-primary w-100" type="button">Let's Play!</button>
                     </div>
                 </div>
@@ -49,62 +55,21 @@
         <div class="content">
             <p class="h5">Playing with: <i class="count"></i> other users</p>
         </div>
+        <button type="button" class="btn btn-primary btn-lg btn-block" id="newCard">Add new card</button>
+        <div class="chat w-100 h-50 scrollable">
+            <div class="chatinner container"></div>
+        </div>
     </div>
     <div class="container-fluid" id="main">
         <div class="row bingo" hidden>
             <button class="openbtn" onclick="openNav()">&#187;</button>
-            <div id="content" class="bingo col-sm-12 col-md-offset-10" hidden>
-                <table class="bingotable" id="default">
-                    <tr>
-                        <th class="orange">B</th>
-                        <th class="orange">I</th>
-                        <th class="orange">N</th>
-                        <th class="orange">G</th>
-                        <th class="orange">O</th>
-                    </tr>
-                    <tr>
-                        <td id="square0"> &nbsp;</td>
-                        <td id="square1"> &nbsp;</td>
-                        <td id="square2"> &nbsp;</td>
-                        <td id="square3"> &nbsp;</td>
-                        <td id="square4"> &nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td id="square5"> &nbsp;</td>
-                        <td id="square6"> &nbsp;</td>
-                        <td id="square7"> &nbsp;</td>
-                        <td id="square8"> &nbsp;</td>
-                        <td id="square9"> &nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td id="square10"> &nbsp;</td>
-                        <td id="square11"> &nbsp;</td>
-                        <td id="squarefree"> FREE</td>
-                        <td id="square12"> &nbsp;</td>
-                        <td id="square13"> &nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td id="square14"> &nbsp;</td>
-                        <td id="square15"> &nbsp;</td>
-                        <td id="square16"> &nbsp;</td>
-                        <td id="square17"> &nbsp;</td>
-                        <td id="square18"> &nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td id="square19"> &nbsp;</td>
-                        <td id="square20"> &nbsp;</td>
-                        <td id="square21"> &nbsp;</td>
-                        <td id="square22"> &nbsp;</td>
-                        <td id="square23"> &nbsp;</td>
-                    </tr>
-                </table>
-            </div>
+            <div id="content" class="bingo row w-100" hidden></div>
         </div>
     </div>
 </body>
 <script>
     function table(id) {
-        return (`<table class="bingotable" id=${id}>\
+        return (`<table class="bingotable col-sm-5 col-md-offset-10" id=${id}>\
             <tr>\
                 <th class="orange">B</th>\
                 <th class="orange">I</th>\
@@ -151,38 +116,13 @@
     }
 </script>
 <script>
-    function create() {
-        cardmngr.push(arr);
-        $.get("http://localhost:4000/generate", function (data) {
-            data.data.forEach(element => {
-                $('#' + element.tile).html(element.label);
-            });
-        }).then((result) => {
-            $('.spinner-border').remove();
-            $('.bingo').removeAttr('hidden');
-        });
-        createCard(activeCards++);
-        console.log(cardmngr);
-    }
-
-    function createCard(id) {
-        let card = $('#content').append(table(id));
-        $.get("http://localhost:4000/generate", function (data) {
-            data.data.forEach(element => {
-                $(`#${id}`).find('#' + element.tile).html(element.label);
-            });
-        }).then((result) => {
-            $('.spinner-border').remove();
-            $('.bingo').removeAttr('hidden');
-        });
-    }
-    // $('td').click(function (items) {
-    //     $(this).toggleClass("selected");
-    // });
+    $('#newCard').on("click", function () {
+        create(cardIndex)
+    });
 
     $('#content').on("click", "td", function (items) {
         $(this).toggleClass("selected");
-    })
+    });
 
     function off() {
         $('.announce').css('display', 'none');
@@ -191,12 +131,12 @@
 
     function openNav() {
         $('#mySidebar').width('250px');
-        $('#main').style.marginLeft = "250px";
+        // $('#main').style.marginLeft = "250px";
     }
 
     function closeNav() {
         $('#mySidebar').width('0');
-        $('#main').style.marginLeft = "0";
+        // $('#main').style.marginLeft = "0";
     }
 </script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -210,6 +150,7 @@
     gtag('js', new Date());
     gtag('config', 'UA-144048408-1');
 </script>
+<script src="js/util.js"></script>
 <script src="js/socket.js"></script>
 
 </html>

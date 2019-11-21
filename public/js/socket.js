@@ -1,24 +1,29 @@
 const socket = io.connect('http://localhost:4000');
 // query dom
 let cardmngr = [];
-let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 const handle = $('#handle');
 
 // emit events
+
+$('#handle').keypress(function (event) {
+    if (event.keyCode == 13 || event.which == 13) {
+        // $('#handle').focus();
+        // event.preventDefault();
+        $('#send').click();
+    }
+});
 
 $('#send').on('click', function () {
     socket.emit('bindhandle', {
         handle: handle.val()
     });
     $('.spinner-border').removeAttr('hidden');
-    create();
+    create(0);
     $('.form').remove();
 });
 
-$('#content').on('click', "td", function () {
-    // need to get the parent element to ensure it is the correct card for card check
-    // if new card then send a new array
-    $(this).parent();
+$('#content').on('click', 'td', function () {
+    arr = cardmngr[$(this).parent().parent().parent().attr('id')];
     let index = $(this).attr('id');
     index = index.split("square", 2)[1];
     if (index >= 12) index++
@@ -47,6 +52,10 @@ socket.on('announce', function (data) {
     }
     $('.announce').css('display', 'block');
 
+});
+
+socket.on('message', function (data) {
+    $('.chatinner').append(`<p>${data.message}</p>`)
 });
 
 socket.on('pattern', function (data) {

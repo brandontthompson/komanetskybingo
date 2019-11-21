@@ -36,15 +36,23 @@ io.on('connection', function (socket) {
         if (data.handle == '') {
             data.handle = "anonymous";
         }
+        socket.handle = data.handle;
         // sends to all
         io.sockets.emit('join', connections.length);
+        io.emit('message', {
+            message: `🚀 ${socket.handle} has joined the game!`
+        });
         socket.emit('bindhandle', data);
     });
 
-    socket.on('cardcheck', function(data){
-        // console.log(data.card);
-        if(util.checkcard(data.card)){
-            io.to(`${socket.id}`).emit('announce', {message : `🎉 CONGRATULATIONS 🎉`})
+    socket.on('cardcheck', function (data) {
+        if (util.checkcard(data.card)) {
+            io.to(`${socket.id}`).emit('announce', {
+                message: `🎉 CONGRATULATIONS 🎉`
+            })
+            io.emit('message', {
+                message: `🎉 ${socket.handle} has bingo! 🎉`
+            });
         }
     });
 
@@ -53,6 +61,9 @@ io.on('connection', function (socket) {
         connections.splice(connections.indexOf(socket), 1);
         console.log('disconnected: %s\n%s sockets connected', socket.id, connections.length);
         io.sockets.emit('join', connections.length);
+        io.emit('message', {
+            message: `👋 ${socket.handle} has left!`
+        });
     })
 
 });
