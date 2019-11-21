@@ -38,7 +38,15 @@ io.on('connection', function (socket) {
         }
         socket.handle = data.handle;
         // sends to all
-        io.sockets.emit('join', connections.length);
+        let users = [];
+        connections.forEach(element => {
+            users.push(element.handle);
+        });
+        io.sockets.emit('join', {
+            count: connections.length,
+            users
+        });
+
         io.emit('message', {
             message: `🚀 ${socket.handle} has joined the game!`
         });
@@ -56,11 +64,38 @@ io.on('connection', function (socket) {
         }
     });
 
+    socket.on('chatmessage', function (data) {
+        if (data.message === '')
+            return;
+        let currentdate = new Date();
+        // let datetime = currentdate.getDate() + "/" +
+        //     (currentdate.getMonth() + 1) + "/" +
+        //     currentdate.getFullYear() + " @ " +
+        //     currentdate.getHours() + ":" +
+        //     currentdate.getMinutes() + ":" +
+        //     currentdate.getSeconds();
+
+        let datetime = currentdate.getHours() + ":" +
+            currentdate.getMinutes() + ":" +
+            currentdate.getSeconds();
+        message = `${socket.handle} <small>${datetime}</small><br/>${data.message}`
+        io.sockets.emit('message', {
+            message
+        });
+    });
     // disconnect
     socket.on('disconnect', function (data) {
         connections.splice(connections.indexOf(socket), 1);
         console.log('disconnected: %s\n%s sockets connected', socket.id, connections.length);
-        io.sockets.emit('join', connections.length);
+        let users = [];
+        connections.forEach(element => {
+            // if (element.id != socket.id)
+            users.push(element.handle);
+        });
+        io.sockets.emit('join', {
+            count: connections.length,
+            users
+        });
         io.emit('message', {
             message: `👋 ${socket.handle} has left!`
         });

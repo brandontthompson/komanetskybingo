@@ -12,3 +12,8 @@ function create(id) {
     });
     cardIndex++;
 }
+
+
+$('#content').on('click', '#remove', function () {
+    $(this).parent().parent().remove();
+});

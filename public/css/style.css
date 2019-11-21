@@ -1,5 +1,7 @@
- p {
-   font-size: 20px;
+ p,
+ .h3,
+ .h4 {
+   font-size: 15px;
  }
 
  /* width */
@@ -32,13 +34,32 @@
  }
 
  .bingotable {
-   margin: 10px auto;
    text-align: center;
    width: 800px;
    height: 800px;
    border-collapse: collapse;
    background: #ffffff;
  }
+
+ .bingotable_container {
+   margin: 5px auto;
+ }
+
+ .bingotable_container>.actions {
+   text-align: right;
+   /* right: 0px; */
+   position: relative;
+   z-index: 1;
+   font-size: 20px;
+   margin: 0 -12px -15px 0;
+
+ }
+
+ .action-item {
+   display: inline;
+   width: fit-content;
+ }
+
 
  th,
  td {
@@ -158,17 +179,26 @@
  }
 
  .chat {
-   position: absolute;
-   bottom: 0px;
+   height: 89%;
+   overflow-y: scroll;
    background-color: #444;
  }
 
  .chatinner p {
+   word-wrap: break-word;
    font-size: 18px;
  }
 
+ #chatbox {
+
+   /* bottom: 0px;
+   position: absolute; */
+   background-color: #fff;
+   width: 100%;
+ }
+
  .scrollable {
-   height: 100px;
+   /* height: 100px; */
    overflow-y: scroll;
  }
 
