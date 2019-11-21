@@ -22,6 +22,15 @@ $('#send').on('click', function () {
     $('.form').remove();
 });
 
+$('#chatbox').keypress(function (event) {
+    if (event.keyCode == 13 || event.which == 13) {
+        socket.emit('chatmessage', {
+            message: $('#chatbox').val()
+        });
+        $('#chatbox').val('');
+    }
+});
+
 $('#content').on('click', 'td', function () {
     arr = cardmngr[$(this).parent().parent().parent().attr('id')];
     let index = $(this).attr('id');
@@ -56,6 +65,7 @@ socket.on('announce', function (data) {
 
 socket.on('message', function (data) {
     $('.chatinner').append(`<p>${data.message}</p>`)
+    $('.chat').scrollTop($('.chatinner').offset().top * $('.chatinner').offset().top);
 });
 
 socket.on('pattern', function (data) {
@@ -65,5 +75,11 @@ socket.on('pattern', function (data) {
 });
 
 socket.on('join', function (data) {
-    $('.count').html(data - 1);
+    console.log(data);
+
+    $('.count').html(data.count - 1);
+    $('#users').empty();
+    data.users.forEach(element => {
+        $('#users').append(`<p style="font-size: 15px;">${element} 👀</p>`);
+    });
 });

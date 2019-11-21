@@ -50,14 +50,18 @@
     </div>
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <p class="h3">Playing as</p>
+        <!-- <p class="h3">Playing as</p> -->
         <p class="handle"></p>
         <div class="content">
-            <p class="h5">Playing with: <i class="count"></i> other users</p>
+            <p class="h5">Playing with: <br /><i class="count"></i> other users</p>
         </div>
         <button type="button" class="btn btn-primary btn-lg btn-block" id="newCard">Add new card</button>
-        <div class="chat w-100 h-50 scrollable">
-            <div class="chatinner container"></div>
+        <div class="w-100 h-25 scrollable" id="users"></div>
+        <div class="h-50" style="position: absolute; bottom: 0;">
+            <div class="chat w-100 scrollable">
+                <div class="chatinner"></div>
+            </div>
+            <input type="text" name="chatbox" id="chatbox" placeholder="message..." />
         </div>
     </div>
     <div class="container-fluid" id="main">
@@ -69,7 +73,11 @@
 </body>
 <script>
     function table(id) {
-        return (`<table class="bingotable col-sm-5 col-md-offset-10" id=${id}>\
+        return (`<div class="bingotable_container">
+            <div class="actions">
+                <div class="action-item" id="remove">❌</div>
+            </div>
+            <table class="bingotable col-sm-5 col-md-offset-10" id=${id}>\
             <tr>\
                 <th class="orange">B</th>\
                 <th class="orange">I</th>\
@@ -112,7 +120,7 @@
                 <td id="square22"> &nbsp;</td>\
                 <td id="square23"> &nbsp;</td>\
             </tr>\
-        </table>`);
+        </table></div>`);
     }
 </script>
 <script>
