@@ -1,9 +1,12 @@
 # komanetskybingo
+
 ## interactive bingo game!
+
 fill out the card as while the professor lectures
 
 ## Public API Endpoint
-```/generate
+
+````/generate
 GET http://komanetsky.com:4000/generate
 
 {
@@ -106,3 +109,7 @@ GET http://komanetsky.com:4000/generate
         }
     ]
 }```
+# TODO
+
+track the card and store them into an array based off index
+````

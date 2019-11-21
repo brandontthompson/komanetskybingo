@@ -1,20 +1,29 @@
 const socket = io.connect('http://komanetsky.com:4000');
 // query dom
-let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+let cardmngr = [];
 const handle = $('#handle');
 
 // emit events
+
+$('#handle').keypress(function (event) {
+    if (event.keyCode == 13 || event.which == 13) {
+        // $('#handle').focus();
+        // event.preventDefault();
+        $('#send').click();
+    }
+});
 
 $('#send').on('click', function () {
     socket.emit('bindhandle', {
         handle: handle.val()
     });
     $('.spinner-border').removeAttr('hidden');
-    create();
+    create(0);
     $('.form').remove();
 });
 
-$('td').on('click', function () {
+$('#content').on('click', 'td', function () {
+    arr = cardmngr[$(this).parent().parent().parent().attr('id')];
     let index = $(this).attr('id');
     index = index.split("square", 2)[1];
     if (index >= 12) index++
@@ -43,6 +52,10 @@ socket.on('announce', function (data) {
     }
     $('.announce').css('display', 'block');
 
+});
+
+socket.on('message', function (data) {
+    $('.chatinner').append(`<p>${data.message}</p>`)
 });
 
 socket.on('pattern', function (data) {
