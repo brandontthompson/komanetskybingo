@@ -20,17 +20,17 @@ GET http://komanetsky.com:4000/generate
 }
 ````
 
-##How to read the structure
+## How to read the structure
 
-#index.js
+# index.js
 This is the main server file, this contains the REST api along with websockets
 
-#util.js
+# util.js
 this contains the card check functions
 
-#config/index.js
+# config/index.js
 this is where the main server pull card info and setup info
 
-#public/*
+# public/*
 this is the public HTML for the site
 
