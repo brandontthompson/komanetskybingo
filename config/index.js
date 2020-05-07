@@ -15,6 +15,7 @@ const config = {
         "images/patterns/X.png"
     ],
     strings: [
+	"The google",
         "Throws something",
         "Kills a student (FREE SQUARE)",
         "Yells at a student",
@@ -44,11 +45,13 @@ const config = {
         "Random student walks into the class",
         "something something Elon Musk",
         "mentions that google is the anti-christ",
-        "That one story he's told 100000x but it changes ever so slightly",
+        "That one story he's told 100x but it changes ever so slightly",
         "Praises Apple as if it were a god",
         "anything about IBM",
-        "Strokes his ponytail",
+        "anything about windows being bad",
         "mentions the dean",
+	"'ya know, thats the thing'",
+	"says a swear! (gasp!)",
         "says how much he loves his wife",
         "something about Stackoverflow ",
         "'bug in the language'",
